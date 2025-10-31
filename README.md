@@ -110,7 +110,7 @@ Isso evita travamentos, melhora o desempenho e permite que o sistema seja **alta
 
 ---
 
-### 11. Handoff Humano (Agent Desk)  
+### 11. Handoff Humano
 Por fim, o **handoff humano** garante que o usuário nunca fique sem resposta.  
 Quando o chatbot não entende a intenção ou detecta uma situação sensível, a conversa é transferida para um atendente real.  
 Esse atendente recebe o histórico completo da conversa, mantendo a **continuidade do atendimento** e a **experiência fluida** entre canais.
