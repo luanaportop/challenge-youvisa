@@ -117,6 +117,7 @@ Esse atendente recebe o histórico completo da conversa, mantendo a **continuida
 
 ---
 
+
 📄 **Detalhes e diagramas**: ver `docs/arquitetura` (diagrama e instruções para exportar no draw.io).
 ## 💬 NLP & Fluxos de Conversa
 - **Intenções/Entidades** e exemplos: `nlp/intents.md`.  
@@ -135,12 +136,8 @@ Documento completo: `SECURITY.md`.
 - **Taxa de resolução sem humano (Self-service rate)**  
 - **Taxa de handoff** e **SLA** de atendimento humano  
 - **Precisão de OCR/NLP** e **taxa de falsos positivos** na validação
- ## 🗂️ Plano & RACI
-- **Cronograma detalhado** por semana/entregável: `docs/timeline.md`.  
-- **RACI** (papéis e responsabilidades): `docs/raci.csv`.
-## 🖥️ Como apresentar
-Use `docs/pitch.md` com roteiro de **5–7 minutos**:  
-1) Problema → 2) Solução → 3) Arquitetura → 4) Fluxos (demo/diagramas) → 5) Próximos passos.
+
+
 ## 🔧 Estrutura do repositório
 ```
 assets               # Imagens.
