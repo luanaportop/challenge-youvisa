@@ -33,6 +33,9 @@ Esta entrega foca em **escopo, arquitetura, fluxos e governança**.
 **Solução:** plataforma multicanal com **chatbot cognitivo** + **automação de processos (RPA)** + **validação de documentos via visão computacional**. O atendimento mantém **continuidade entre canais**, garante **segurança (LGPD)** e **handoff para humano** quando necessário.
 ## 🧠 Arquitetura (alta visão)
 A arquitetura contempla:
+<p align="center">
+<a href=""><img src="assets/Arquitetura_YouVisa.png" alt="Arquitetura" border="0" width=40% height=40%></a>
+</p>
 - **Canais**: WhatsApp, Telegram, Web Chat.  
 - **NLP/Chatbot**: Dialogflow / Rasa / spaCy / Hugging Face.  
 - **Backend/API**: Node.js / Python (FastAPI/Flask) / Java (Spring).  
