@@ -37,13 +37,87 @@ A arquitetura contempla:
 <a href=""><img src="assets/Arquitetura_YouVisa.png" alt="Arquitetura" border="0" width=40% height=40%></a>
 </p>
 
-- **Canais**: WhatsApp, Telegram, Web Chat.  
-- **NLP/Chatbot**: Dialogflow / Rasa / spaCy / Hugging Face.  
-- **Backend/API**: Node.js / Python (FastAPI/Flask) / Java (Spring).  
-- **Visão Computacional**: OCR (Tesseract/AWS Textract/GCP Vision), leitura de **MRZ** e checagens antifraude.  
-- **Dados**: PostgreSQL/MongoDB + Data Lake/Blob para anexos.  
-- **Cloud**: AWS / GCP / Azure (Auth, Storage, Queue, Observability).  
-- **Atendimento Humano**: painel web + fila de tickets (API REST).
+A arquitetura da solução **YOUVISA** representa o fluxo inteligente de atendimento multicanal, onde diferentes pontos de contato do usuário (como **WhatsApp**, **Telegram** e **Web Chat**) se integram de forma fluida a um núcleo cognitivo capaz de compreender intenções, automatizar processos e garantir continuidade entre canais.
+
+---
+
+### 1. Canais de Entrada  
+Os canais representam as **portas de entrada do usuário**.  
+Cada interação, seja por **WhatsApp (Cloud API)**, **Telegram Bot API** ou **Web Chat**, é capturada e encaminhada ao **Gateway Omnicanal**, que centraliza e padroniza as mensagens recebidas.  
+Essa etapa garante que, independentemente do canal, a experiência do usuário seja uniforme e consistente.
+
+---
+
+### 2. Gateway Omnicanal / Orquestrador  
+O gateway funciona como o **maestro da comunicação**.  
+Ele recebe as mensagens, aplica verificações iniciais (como autenticação, logs e consentimento LGPD) e as direciona ao motor de processamento de linguagem natural (**NLP**).  
+Aqui também se gerenciam **tokens de continuidade**, responsáveis por manter a conversa ativa quando o usuário muda de canal.
+
+---
+
+### 3. Motor NLP (Natural Language Processing)  
+O **NLP Engine** interpreta o que o usuário quer dizer.  
+Ele identifica **intenções** (por exemplo, solicitar visto, verificar status, reagendar) e **entidades** (país, tipo de visto, data).  
+Essa camada pode ser implementada com bibliotecas como **spaCy**, **Rasa NLU** ou serviços cloud, dependendo das políticas de privacidade e da maturidade do projeto.
+
+---
+
+### 4. Policy / Context Manager  
+Após o entendimento da intenção, o **gerenciador de contexto** mantém a coerência da conversa.  
+Ele lembra o histórico, aplica regras de negócio e define se a próxima ação será automatizada, consultiva ou humana.  
+Essa camada é essencial para garantir que o chatbot “pense antes de agir” e responda de acordo com o contexto do usuário.
+
+---
+
+### 5. Regras e Roteamento  
+O módulo de **Regras & Roteamento** decide o destino de cada solicitação:  
+- Se o usuário precisa enviar documentos, a mensagem é enviada à **Visão Computacional**;  
+- Se envolve tarefas repetitivas, vai ao **Orquestrador RPA**;  
+- Se requer integração com sistemas internos, segue para **Serviços Internos**.  
+
+Quando a complexidade é alta ou há risco de erro, o sistema faz **handoff humano** para um atendente especializado.
+
+---
+
+### 6. Visão Computacional (OCR / MRZ / Antifraude)  
+Essa camada trata a **validação de documentos** enviados pelo usuário.  
+Ela realiza OCR (leitura automática), extrai informações da **MRZ do passaporte**, faz comparações de **face match** e aplica regras antifraude.  
+Em casos suspeitos, o fluxo é pausado e encaminhado para **revisão manual**, mantendo segurança e conformidade com a **LGPD**.
+
+---
+
+### 7. Orquestrador RPA  
+Responsável por **automatizar tarefas repetitivas**, como preenchimento de formulários, criação de protocolos e atualização de status.  
+Ao liberar os atendentes dessas atividades, a RPA acelera processos e reduz custos operacionais.
+
+---
+
+### 8. Serviços Internos (Microserviços)  
+Agrupa os sistemas corporativos integrados, como banco de dados, CRM e gestão de solicitações.  
+Sua arquitetura modular permite que cada serviço funcione de forma independente, facilitando **atualizações** e **escalabilidade**.
+
+---
+
+### 9. Data Lake + Data Warehouse  
+Todos os dados processados — logs, intenções, documentos e indicadores — são armazenados de forma segura e criptografada.  
+O **Data Lake** guarda os dados brutos para análises posteriores, enquanto o **Data Warehouse** estrutura informações consolidadas para relatórios e insights.  
+Essas camadas permitem criar **painéis de monitoramento** e **análises preditivas**, apoiando decisões estratégicas.
+
+---
+
+### 10. Fila / Mensageria  
+A fila atua como um **sistema de mensagens assíncronas** (ex.: RabbitMQ, Pub/Sub, SQS), garantindo que os módulos troquem dados com segurança mesmo sob alta demanda.  
+Isso evita travamentos, melhora o desempenho e permite que o sistema seja **altamente escalável**.
+
+---
+
+### 11. Handoff Humano (Agent Desk)  
+Por fim, o **handoff humano** garante que o usuário nunca fique sem resposta.  
+Quando o chatbot não entende a intenção ou detecta uma situação sensível, a conversa é transferida para um atendente real.  
+Esse atendente recebe o histórico completo da conversa, mantendo a **continuidade do atendimento** e a **experiência fluida** entre canais.
+
+---
+
 📄 **Detalhes e diagramas**: ver `docs/arquitetura.md` (diagramas Mermaid e instruções para exportar no diagrams.net).
 ## 💬 NLP & Fluxos de Conversa
 - **Intenções/Entidades** e exemplos: `nlp/intents.md`.  
