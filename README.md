@@ -27,7 +27,7 @@ Esta entrega foca em **escopo, arquitetura, fluxos e governança**.
 - Desenhar **fluxos do chatbot** (Telegram como diferencial; integração desejável com WhatsApp).  
 - Especificar **coleta/tratamento de dados** (simulada) e **estratégia de segurança LGPD**.  
 - Definir **encaminhamento para humano** e **métricas/KPIs**.  
-## 💡 Problema & Solução (Resumo Executivo)
+## 💡 Problema & Solução
 **Problema:** organizações lidam com alto volume de solicitações de vistos/consulares, triagens repetitivas e verificações documentais que geram **custos** e **atrasos**.  
 **Solução:** plataforma multicanal com **chatbot cognitivo** + **automação de processos (RPA)** + **validação de documentos via visão computacional**. O atendimento mantém **continuidade entre canais**, garante **segurança (LGPD)** e **handoff para humano** quando necessário.
 ## 🧠 Arquitetura (alta visão)
