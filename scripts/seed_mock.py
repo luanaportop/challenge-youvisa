@@ -1,0 +1,1 @@
+# placeholder para geradores de dados simulados
